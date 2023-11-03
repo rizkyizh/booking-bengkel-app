@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BookingOrderRepository {
 
-    List<BookingOrder> bookingOrderList;
+    final List<BookingOrder> bookingOrderList;
 
     private BookingOrderRepository (){
        bookingOrderList = new ArrayList<>();

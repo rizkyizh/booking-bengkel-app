@@ -4,7 +4,7 @@ import com.bengkel.booking.models.Customer;
 
 
 public class Session {
-    private Customer customer;
+    private final Customer customer;
 
     private Session(Customer customer) {
         this.customer = customer;

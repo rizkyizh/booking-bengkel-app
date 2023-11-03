@@ -3,7 +3,6 @@ package com.bengkel.booking.repositories;
 import java.util.Arrays;
 import java.util.List;
 
-import com.bengkel.booking.models.Customer;
 import com.bengkel.booking.models.ItemService;
 
 public class ItemServiceRepository {

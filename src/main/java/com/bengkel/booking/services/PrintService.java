@@ -148,9 +148,11 @@ public class PrintService {
             do {
                 resultValidation = Validation.validasiNumberDouble("Masukkan besaran Top Up: ");
 
-                if (!resultValidation.equalsIgnoreCase("Silahkan masukkan angka!")) {
+                if (!resultValidation.equalsIgnoreCase("Silahkan masukkan angka!!")) {
                     newTopUp = Double.parseDouble(resultValidation);
                     isInputValid = false;
+                }else {
+                    System.err.println(resultValidation);
                 }
 
             } while (isInputValid);
@@ -247,7 +249,42 @@ public class PrintService {
 
     }
 
-    public static void showInformationBookingOrderMenu() {
+    public static void showInformationBookingOrderMenu(BengkelService bengkelService) {
+        Customer customer = SESSION.getCustomer();
+        List<BookingOrder> bookingOrderList = bengkelService.getAllBookingOrderByCustomerId(customer.getCustomerId());
 
+        String line = "+------------------------------------------------------------------------------------------------------------------------------------------------------------------+";
+        System.out.println(line);
+        System.out.printf("| %-4s | %-17s | %-11s | %-15s | %-15s | %-15s | %-30s | %-30s |\n", "No.", "ID", "Nama Customer", "payment Method", "Total Service", "Total Payment", "List Service", "Booking Date");
+        System.out.println(line);
+        int num = 1;
+        for (BookingOrder bookingOrder : bookingOrderList) {
+
+            System.out.printf("| %-4s | %-17s | %-13s | %-15s | %-15s | %-15s | %-30s | %-30s |\n",
+                    num,
+                    bookingOrder.getBookingId(),
+                    bookingOrder.getCustomer().getName(),
+                    bookingOrder.getPaymentMethod(),
+                    bookingOrder.getTotalServicePrice(),
+                    bookingOrder.getTotalPayment(),
+                    PrintService.printServiceName(bookingOrder.getServices()),
+                    bookingOrder.getBookingDate()
+
+            );
+            num++;
+
+        }
+        System.out.println(line);
+
+    }
+
+    private static Object printServiceName(List<ItemService> services) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (ItemService itemService : services) {
+            stringBuilder.append(itemService.getServiceName()).append(", ");
+        }
+
+        return stringBuilder.toString();
     }
 }

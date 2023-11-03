@@ -1,7 +1,6 @@
 package com.bengkel.booking.services;
 
 
-import java.util.Scanner;
 import com.bengkel.booking.authentication.AuthService;
 import com.bengkel.booking.helper.Utils;
 
@@ -9,19 +8,18 @@ import static com.bengkel.booking.authentication.Session.SESSION;
 
 public class MenuService {
 
-	private static BengkelService bengkelService = BengkelService.getInstance();
-	private static AuthService authService = AuthService.getInstance();
-	private static Scanner input = new Scanner(System.in);
+	private static final BengkelService bengkelService = BengkelService.getInstance();
+	private static final AuthService authService = AuthService.getInstance();
 	public static void run() {
 
-		boolean isLooping = true;
+		//noinspection InfiniteLoopStatement
 		do {
 			if (SESSION == null){
 				welcomeMenu();
 			}else {
 				mainMenu();
 			}
-		} while (isLooping);
+		} while (true);
 		
 	}
 	
@@ -74,8 +72,8 @@ public class MenuService {
 				isLooping = Utils.Stopped();
 				break;
 			case 4:
-				// TODO: 03/11/23  informasi booking
-				PrintService.showInformationBookingOrderMenu();
+				PrintService.showInformationBookingOrderMenu(bengkelService);
+				isLooping = Utils.Stopped();
 				break;
 			default:
 				authService.logout();

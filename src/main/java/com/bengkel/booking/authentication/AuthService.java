@@ -5,7 +5,7 @@ import com.bengkel.booking.repositories.CustomerRepository;
 
 public class AuthService {
 
-   CustomerRepository customerRepository;
+   final CustomerRepository customerRepository;
 
     private AuthService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;

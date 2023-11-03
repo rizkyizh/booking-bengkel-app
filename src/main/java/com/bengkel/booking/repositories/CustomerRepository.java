@@ -36,7 +36,7 @@ public class CustomerRepository {
 
             //Customer 2
             Vehicle motorCust2 = new Motorcyle("D6734ZD", "Merah", "Honda", "Otomatis", 2019, 125);
-            List<Vehicle> listCust2Vechicle = Arrays.asList(motorCust2);
+            List<Vehicle> listCust2Vechicle = List.of(motorCust2);
 
             Customer cust2 = new Customer("Cust-002", "Yanto", "Bandung", "cust002", listCust2Vechicle);
 

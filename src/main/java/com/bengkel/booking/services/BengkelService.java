@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 
 public class BengkelService {
 
-    CustomerRepository customerRepository;
+    final CustomerRepository customerRepository;
 
-    ItemServiceRepository serviceRepository;
+    final ItemServiceRepository serviceRepository;
 
-    BookingOrderRepository bookingOrderRepository;
+    final BookingOrderRepository bookingOrderRepository;
 
     public BengkelService(CustomerRepository customerRepository, ItemServiceRepository serviceRepository, BookingOrderRepository bookingOrderRepository) {
         this.customerRepository = customerRepository;
@@ -82,11 +82,7 @@ public class BengkelService {
         String bookingOrderId = newBookingOrder.getBookingId();
         bookingOrderRepository.getAll().add(newBookingOrder);
         BookingOrder isExist = getBookingOrderById(bookingOrderId);
-        if(isExist != null){
-            return true;
-        }else {
-            return false;
-        }
+        return isExist != null;
 
     }
 
@@ -100,5 +96,12 @@ public class BengkelService {
     public void decreaseSaldoCoinByMemberId(String customerId, double totalPayment) {
         MemberCustomer memberCustomer = getMemberCustomerById(customerId);
         memberCustomer.setSaldoCoin(memberCustomer.getSaldoCoin() - totalPayment);
+    }
+
+    public List<BookingOrder> getAllBookingOrderByCustomerId(String customerId) {
+        return bookingOrderRepository.getAll()
+                .stream()
+                .filter(bookingOrder -> bookingOrder.getCustomer().getCustomerId().equalsIgnoreCase(customerId))
+                .collect(Collectors.toList());
     }
 }
