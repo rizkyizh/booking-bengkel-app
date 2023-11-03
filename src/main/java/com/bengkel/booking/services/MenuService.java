@@ -66,13 +66,16 @@ public class MenuService {
 			 	isLooping = Utils.Stopped();
 				break;
 			case 2:
-				// TODO: 03/11/23 panggil fitur Booking Bengkel
+				PrintService.BookingBengkel(bengkelService);
+				isLooping = Utils.Stopped();
 				break;
 			case 3:
 				PrintService.TopupSaldoCoin(bengkelService);
 				isLooping = Utils.Stopped();
 				break;
 			case 4:
+				// TODO: 03/11/23  informasi booking
+				PrintService.showInformationBookingOrderMenu();
 				break;
 			default:
 				authService.logout();

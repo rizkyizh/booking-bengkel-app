@@ -27,4 +27,14 @@ public class Customer {
 		this.maxNumberOfService = 1;
 	}
 
+	public Customer copy() {
+		return new Customer(
+				this.getCustomerId(),
+				this.getName(),
+				this.getAddress(),
+				this.getPassword(),
+				this.getVehicles(),
+				this.getMaxNumberOfService()
+		);
+	}
 }

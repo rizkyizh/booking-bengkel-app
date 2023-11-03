@@ -36,6 +36,20 @@ public class Utils {
         return inputUser.equalsIgnoreCase("y");
     }
 
+    public static boolean yesOrNo(String message) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("\n"+ message+ " [y/n]: ");
+        String inputUser = input.next();
+
+        while (!inputUser.equalsIgnoreCase("y") && !inputUser.equalsIgnoreCase("n")) {
+            System.out.println("Pilihan anda bukan [y/n]");
+            System.out.print("\n"+ message+ " [y/n]: ");
+            inputUser = input.next();
+        }
+
+        return inputUser.equalsIgnoreCase("y");
+    }
+
     public static String toTitleCase(String title) {
         String[] words = title.split(" ");
         StringBuilder stringBuilder = new StringBuilder();

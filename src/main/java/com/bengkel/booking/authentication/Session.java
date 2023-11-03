@@ -1,12 +1,7 @@
 package com.bengkel.booking.authentication;
 
-import com.bengkel.booking.models.Car;
 import com.bengkel.booking.models.Customer;
-import com.bengkel.booking.models.Motorcyle;
-import com.bengkel.booking.models.Vehicle;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class Session {
     private Customer customer;
